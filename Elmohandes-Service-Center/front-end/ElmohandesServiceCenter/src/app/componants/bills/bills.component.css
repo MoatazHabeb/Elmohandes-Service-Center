@@ -1,0 +1,333 @@
+.invoice-container {
+  position: relative;
+  z-index: 1;
+  background-color: #fff;
+  color: #000;
+  width: 900px;
+  margin: 100px auto;
+  border: 1px solid #000;
+  padding: 20px;
+  font-family: 'Arial', sans-serif;
+  direction: rtl;
+}
+
+.invoice-container::before {
+  content: "";
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  background-image: url('/assets/images/jjmb-020-g_0.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 300px;
+  opacity: 0.06; /* Faint watermark */
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+.header {
+  display: flex;
+  align-items: flex-start; /* Changed from center to flex-start */
+  justify-content: center;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.logo-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+  margin-bottom: 5px; /* Space between logo and text */
+}
+
+.service-center-name {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.title {
+  text-align: center;
+  width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.info-table td,
+.details-table td,
+.items-table th,
+.items-table td {
+  border: 1px solid #000;
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.items-table th {
+  background-color: #f0f0f0;
+}
+
+.signature-line {
+  margin-top: 30px;
+  font-size: 14px;
+}
+
+.footer {
+  margin-top: 30px;
+  font-size: 13px;
+  text-align: center;
+}
+.bill-header {
+  text-align: right;
+  margin-bottom: 20px;
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.bill-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.bill-item-card {
+  direction: rtl;
+  text-align: right;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-family: 'Cairo', sans-serif;
+}
+
+.item-row {
+  margin: 5px 0;
+  font-size: 16px;
+}
+/* Styles for the overall page structure if you want page breaks for printing */
+.invoice-document-page {
+  page-break-after: always; /* This will create a new page for each invoice-document-page div when printing */
+  margin-bottom: 20px; /* Optional: space between printed pages */
+}
+
+/* Base invoice container */
+.invoice-wrapper-container {
+  position: relative;
+  z-index: 1;
+  background-color: #fff;
+  color: #000;
+  width: 900px; /* Adjust as needed */
+  margin: 100px auto;
+  border: 1px solid #000;
+  padding: 20px;
+  font-family: 'Arial', sans-serif; /* Or 'Cairo' if you have it imported */
+  direction: rtl;
+  box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+/* Watermark using ::before pseudo-element */
+.invoice-wrapper-container::before {
+  content: "";
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Adjust to precisely center the watermark */
+  /* Replace with your actual image path. Ensure it's accessible. */
+  background-image: url('/assets/images/jjmb-020-g_0.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 300px; /* Adjust size of watermark */
+  opacity: 0.06; /* Faint watermark */
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none; /* Allows clicks to pass through the watermark */
+}
+
+/* Header section */
+.document-header {
+  display: flex;
+  align-items: flex-start; /* Align logo and title at the top */
+  justify-content: center; /* Center the title */
+  position: relative;
+  margin-bottom: 20px;
+  padding-bottom: 10px; /* Add some padding below the header */
+  border-bottom: 1px solid #eee; /* Optional: a subtle line below the header */
+}
+
+.company-logo-section {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.company-logo {
+  width: 80px; /* Adjust logo size */
+  height: auto;
+  margin-bottom: 5px; /* Space between logo and text */
+}
+
+.company-service-name {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.document-title-area {
+  text-align: center;
+  width: 100%; /* Make title take full width for centering */
+}
+
+.document-title-area h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.customer-car-info-table td,
+.bill-items-details-table th,
+.bill-items-details-table td {
+  border: 1px solid #000;
+  padding: 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.bill-items-details-table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.bill-items-details-table td:nth-child(2) { /* For "البيان" column to be right-aligned as in the image */
+  text-align: right;
+}
+
+/* Financial Totals section */
+.financial-totals-section {
+  margin-top: 20px;
+  text-align: left; /* Align totals to the left, as often seen in bills */
+  font-size: 16px;
+  font-weight: bold;
+  border-top: 1px solid #000; /* Line above totals */
+  padding-top: 10px;
+}
+
+.total-amount-row {
+  display: flex;
+  justify-content: space-between; /* Space out the label and value */
+  margin-bottom: 5px;
+}
+
+/* Signature and Footer */
+.client-signature-line {
+  margin-top: 30px;
+  font-size: 18px;
+  text-align: left; /* Signature line should be left-aligned */
+  font-weight: bold;
+}
+
+.document-footer-text {
+  margin-top: 30px;
+  font-size: 20px;
+  text-align: center;
+  color: black;
+
+}
+
+/* Original additional styles (if still relevant for other parts of your app) */
+/*
+.bill-header {
+  text-align: right;
+  margin-bottom: 20px;
+  font-family: 'Cairo', sans-serif;
+  direction: rtl;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.bill-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.bill-item-card {
+  direction: rtl;
+  text-align: right;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  font-family: 'Cairo', sans-serif;
+}
+
+.item-row {
+  margin: 5px 0;
+  font-size: 16px;
+}
+*/
+.bill-container {
+  position: relative;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #e0e0e0;
+}
+
+.delete-icon {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  color: #ff4d4f;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.delete-icon:hover {
+  color: #d9363e;
+}
+
+.bill-separator {
+  height: 4px;
+  background: linear-gradient(to right, #e91e63, #9c27b0, #2196f3);
+  margin: 20px 0;
+  border-radius: 4px;
+}
+

@@ -1,0 +1,247 @@
+<!-- Add Client -->
+<div *ngIf="isAddClientMode" class="add-customer-container">
+  <h2 class="form-title">Add Client</h2>
+
+  <!-- Message Display -->
+  <div *ngIf="messageType === 'success' && serverMessage" class="message-box success">
+    {{ serverMessage }}
+  </div>
+
+  <div *ngIf="messageType === 'error' && (serverMessage || messageEn || messageAr)" class="message-box error">
+    <div *ngIf="serverMessage">{{ serverMessage }}</div>
+    <div *ngIf="messageEn">{{ messageEn }}</div>
+    <div *ngIf="messageAr">{{ messageAr }}</div>
+  </div>
+
+  <!-- Form -->
+  <form (ngSubmit)="onSubmit()" #customerForm="ngForm" class="customer-form">
+    <div class="form-group">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" id="name" name="name"
+             [(ngModel)]="customer.name" required
+             #name="ngModel"
+             [class.invalid]="name.invalid && name.touched"
+             class="form-input">
+      <div *ngIf="name.invalid && name.touched" class="validation-error">
+        Name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber" class="form-label">Phone Number</label>
+      <input type="text" id="phoneNumber" name="phoneNumber"
+             [(ngModel)]="customer.phoneNumber" required
+             #phoneNumber="ngModel"
+             [class.invalid]="phoneNumber.invalid && phoneNumber.touched"
+             class="form-input">
+      <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="validation-error">
+        Phone number is required
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="customerForm.invalid" class="submit-btn">
+        Add Client
+      </button>
+      <button type="button" class="cancel-btn" (click)="router.navigate(['/customers'])">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Add Vehicle -->
+<div *ngIf="isAddCarMode" class="add-customer-container">
+  <h2 class="form-title">Add Vehicle</h2>
+
+  <!-- Message Display -->
+  <div *ngIf="messageType === 'success' && serverMessage" class="message-box success">
+    {{ serverMessage }}
+  </div>
+
+  <div *ngIf="messageType === 'error' && (serverMessage || messageEn || messageAr)" class="message-box error">
+    <div *ngIf="serverMessage">{{ serverMessage }}</div>
+    <div *ngIf="messageEn">{{ messageEn }}</div>
+    <div *ngIf="messageAr">{{ messageAr }}</div>
+  </div>
+
+  <!-- Form -->
+  <form (ngSubmit)="onSubmit()" #carForm="ngForm" class="customer-form">
+    <div class="form-group">
+      <label for="model" class="form-label">Model</label>
+      <input type="text" id="model" name="model"
+             [(ngModel)]="car.model" required
+             #model="ngModel"
+             [class.invalid]="model.invalid && model.touched"
+             class="form-input">
+      <div *ngIf="model.invalid && model.touched" class="validation-error">
+        Model is required
+      </div>
+    </div>
+
+    <div class="form-group arabic-field">
+      <label for="boardNumber" class="form-label">رقم اللوحة:</label>
+      <input type="text" id="boardNumber" name="boardNumber"
+             [(ngModel)]="car.boardNumber" required
+             #boardNumber="ngModel"
+             [class.invalid]="boardNumber.invalid && boardNumber.touched"
+             class="form-input">
+      <div *ngIf="boardNumber.invalid && boardNumber.touched" class="validation-error">
+        Board number is required
+      </div>
+    </div>
+
+    <div class="form-group arabic-field">
+      <label for="chassisNumber" class="form-label">رقم الشاسية:</label>
+      <input type="text" id="chassisNumber" name="chassisNumber"
+             [(ngModel)]="car.chassisNumber" required
+             #chassisNumber="ngModel"
+             [class.invalid]="chassisNumber.invalid && chassisNumber.touched"
+             class="form-input">
+      <div *ngIf="chassisNumber.invalid && chassisNumber.touched" class="validation-error">
+        Chassis number is required
+      </div>
+    </div>
+
+    <div class="form-group arabic-field">
+      <label for="engineNumber" class="form-label">رقم الموتور:</label>
+      <input type="text" id="engineNumber" name="engineNumber"
+             [(ngModel)]="car.engineNumber" required
+             #engineNumber="ngModel"
+             [class.invalid]="engineNumber.invalid && engineNumber.touched"
+             class="form-input">
+      <div *ngIf="engineNumber.invalid && engineNumber.touched" class="validation-error">
+        Engine number is required
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="carForm.invalid" class="submit-btn">
+        Add Vehicle
+      </button>
+      <button type="button" class="cancel-btn" (click)="router.navigate(['/customers'])">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Update Client -->
+<div *ngIf="isUpdateCustomerMode" class="add-customer-container">
+  <h2 class="form-title">Update Client</h2>
+
+  <!-- Messages -->
+  <div *ngIf="messageType" class="message-box {{messageType}}">
+    <div *ngIf="messageEn">{{ messageEn }}</div>
+    <div *ngIf="messageAr">{{ messageAr }}</div>
+    <div *ngIf="serverMessage">{{ serverMessage }}</div>
+  </div>
+
+  <!-- Form -->
+  <form (ngSubmit)="onSubmit()" #customerForm="ngForm" class="customer-form">
+    <div class="form-group">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" id="name" name="name"
+             [(ngModel)]="customer.name" required
+             #name="ngModel"
+             [class.invalid]="name.invalid && name.touched"
+             class="form-input">
+      <div *ngIf="name.invalid && name.touched" class="validation-error">
+        Name is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phoneNumber" class="form-label">Phone Number</label>
+      <input type="text" id="phoneNumber" name="phoneNumber"
+             [(ngModel)]="customer.phoneNumber" required
+             #phoneNumber="ngModel"
+             [class.invalid]="phoneNumber.invalid && phoneNumber.touched"
+             class="form-input">
+      <div *ngIf="phoneNumber.invalid && phoneNumber.touched" class="validation-error">
+        Valid phone number is required
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="customerForm.invalid" class="submit-btn">
+        Update Client
+      </button>
+      <button type="button" class="cancel-btn" (click)="router.navigate(['/customers'])">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- Update Vehicle -->
+<div *ngIf="isUpdateCarMode" class="add-customer-container">
+  <h2 class="form-title">Update Vehicle</h2>
+
+  <!-- Messages -->
+  <div *ngIf="messageType" class="message-box {{messageType}}">
+    <div *ngIf="messageEn">{{ messageEn }}</div>
+    <div *ngIf="messageAr">{{ messageAr }}</div>
+    <div *ngIf="serverMessage">{{ serverMessage }}</div>
+  </div>
+
+  <!-- Form -->
+  <form (ngSubmit)="onSubmit()" #carForm="ngForm" class="customer-form">
+    <div class="form-group">
+      <label for="model" class="form-label">Model</label>
+      <input type="text" id="model" name="model"
+             [(ngModel)]="car.model" required
+             #model="ngModel"
+             [class.invalid]="model.invalid && model.touched"
+             class="form-input">
+      <div *ngIf="model.invalid && model.touched" class="validation-error">
+        Model is required
+      </div>
+    </div>
+
+    <div class="form-group arabic-field">
+      <label for="boardNumber" class="form-label">رقم اللوحة:</label>
+      <input type="text" id="boardNumber" name="boardNumber"
+             [(ngModel)]="car.boardNumber" required
+             #boardNumber="ngModel"
+             [class.invalid]="boardNumber.invalid && boardNumber.touched"
+             class="form-input">
+      <div *ngIf="boardNumber.invalid && boardNumber.touched" class="validation-error">
+        Board number is required
+      </div>
+    </div>
+
+    <div class="form-group arabic-field">
+      <label for="chassisNumber" class="form-label">رقم الشاسية:</label>
+      <input type="text" id="chassisNumber" name="chassisNumber"
+             [(ngModel)]="car.chassisNumber" required
+             #chassisNumber="ngModel"
+             [class.invalid]="chassisNumber.invalid && chassisNumber.touched"
+             class="form-input">
+      <div *ngIf="chassisNumber.invalid && chassisNumber.touched" class="validation-error">
+        Chassis number is required
+      </div>
+    </div>
+
+    <div class="form-group arabic-field">
+      <label for="engineNumber" class="form-label">رقم الموتور:</label>
+      <input type="text" id="engineNumber" name="engineNumber"
+             [(ngModel)]="car.engineNumber" required
+             #engineNumber="ngModel"
+             [class.invalid]="engineNumber.invalid && engineNumber.touched"
+             class="form-input">
+      <div *ngIf="engineNumber.invalid && engineNumber.touched" class="validation-error">
+        Engine number is required
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="carForm.invalid" class="submit-btn">
+        Update Vehicle
+      </button>
+      <button type="button" class="cancel-btn" (click)="router.navigate(['/customers'])">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>

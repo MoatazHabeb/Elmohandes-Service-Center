@@ -1,0 +1,110 @@
+<div class="luxury-customer-dashboard">
+
+
+  <div class="search-container">
+    <select [(ngModel)]="searchType" class="search-type-select">
+      <option value="name">Search by Name</option>
+      <option value="chassis">Search by Chassis Number</option>
+    </select>
+
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      placeholder="Enter search query"
+      class="search-input"
+    />
+    <button class="luxury-btn search-btn" (click)="searchCustomers()">Search</button>
+    <button class="luxury-btn clear-btn" (click)="loadCustomersWithCars()" *ngIf="isSearching">Clear</button>
+  </div>
+
+
+  <div *ngIf="noResultsMessage" class="no-results-message">
+    {{ noResultsMessage }}
+  </div>
+
+  <div class="luxury-grid">
+
+
+
+    <div class="luxury-card" *ngFor="let entry of customersWithCars">
+      <div class="luxury-card-header">
+        <div class="brand-logo">
+          <img src="assets/images/mercedesbenzgold.png" alt="Mercedes-Benz">
+        </div>
+        <div class="customer-details">
+          <h2 class="customer-name">{{ entry.customer.name }}</h2>
+          <div class="phone-number">
+            <div class="phone-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+              </svg>
+            </div>
+            <span>{{ entry.customer.phoneNumber }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="luxury-actions card-actions">
+        <button class="luxury-btn edit" (click)="updateCustomer(entry.customer.id)">
+          <i class="fas fa-edit"></i> Edit
+        </button>
+        <button class="luxury-btn delete" (click)="deleteCustomer(entry.customer.id)">
+          <i class="fas fa-trash-alt"></i> Delete
+        </button>
+        <button class="luxury-btn add-car" [routerLink]="['/clientsactions/addcar', entry.customer.id]">
+          <i class="fas fa-car"></i> Add Vehicle
+        </button>
+        <button class="luxury-btn bills" (click)="viewBills(entry.customer.id)">
+          <i class="fas fa-file-invoice"></i> Bills
+        </button>
+      </div>
+
+      <div class="vehicle-portfolio" *ngIf="entry.cars.length > 0">
+        <div class="portfolio-header">
+          <div class="title-container">
+            <i class="fas fa-car-side"></i>
+            <h3>Vehicle Portfolio</h3>
+          </div>
+          <span class="vehicle-count">{{ entry.cars.length }} vehicles</span>
+        </div>
+
+        <div class="vehicle-showcase">
+          <div class="vehicle-item" *ngFor="let car of entry.cars">
+            <div class="vehicle-info">
+              <h4 class="model">{{ car.model }}</h4>
+              <div class="specs" dir="rtl">
+                <div class="spec">
+                  <span class="label">رقم اللوحة:</span>
+                  <span class="value">{{ car.boardNumber }}</span>
+                </div>
+                <div class="spec">
+                  <span class="label">رقم الشاسية:</span>
+                  <span class="value">{{ car.chassisNumber }}</span>
+                </div>
+                <div class="spec">
+                  <span class="label">رقم الموتور:</span>
+                  <span class="value">{{ car.engineNumber }}</span>
+                </div>
+              </div>
+            </div>
+            <div class="vehicle-controls">
+              <button class="control-btn edit" (click)="updateCar(car.id,entry.customer.id)">
+                <i class="fas fa-cog"></i>
+              </button>
+              <button class="control-btn delete" (click)="deleteCar(car.id)">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="empty-garage" *ngIf="entry.cars.length === 0">
+        <div class="empty-content">
+          <i class="fas fa-warehouse"></i>
+          <p>No vehicles in garage</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

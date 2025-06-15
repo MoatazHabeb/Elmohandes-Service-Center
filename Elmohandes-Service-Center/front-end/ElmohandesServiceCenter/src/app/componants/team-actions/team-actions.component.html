@@ -1,0 +1,42 @@
+<div *ngIf="actionKey === 'update' && teamData" class="action-form-container">
+  <div class="create-form">
+    <h3>Update Team Member</h3>
+    <form (ngSubmit)="updateTeam()">
+      <input type="text" [(ngModel)]="teamData.name" name="name" placeholder="Name" required />
+      <input type="text" [(ngModel)]="teamData.phoneNumber" name="phoneNumber" placeholder="Phone Number" required />
+      <input type="text" [(ngModel)]="teamData.age" name="age" placeholder="Age" required />
+      <input type="text" [(ngModel)]="teamData.image" name="image" placeholder="Image URL" />
+      <input type="number" [(ngModel)]="teamData.balance" name="balance" placeholder="Balance" />
+      <label>
+        <input type="checkbox" [(ngModel)]="teamData.active" name="active" />
+        Active
+      </label>
+      <button type="submit">Update Member</button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="actionKey === 'create-balance'" class="action-form-container">
+  <div class="create-form">
+    <h3>Create New Balance</h3>
+    <form (ngSubmit)="createBalance()">
+      <input type="text" [(ngModel)]="newBalance.reason" name="reason" placeholder="Reason" required />
+      <input type="number" [(ngModel)]="newBalance.newBalance" name="newBalance" placeholder="Amount" required />
+      <input type="date" [(ngModel)]="newBalance.dateOfReason" name="dateOfReason" required />
+      <button type="submit">Create Balance</button>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="actionKey === 'show-balance'" class="balance-list-container">
+  <div class="create-form">
+    <h3>All Balances</h3>
+    <div class="balance-list">
+      <div class="balance-item" *ngFor="let acc of accountList">
+        <div class="balance-date">{{ acc.dateOfReason | date:'dMMMMyyyy' }}</div>
+        <div class="balance-reason">{{ acc.reason }}</div>
+        <div class="balance-amount">{{ acc.newBalance }} EGP</div>
+      </div>
+    </div>
+  </div>
+</div>

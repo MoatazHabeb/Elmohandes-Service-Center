@@ -1,0 +1,136 @@
+<div *ngFor="let bill of bills" >
+  <div  class="bill-container">
+
+<div class="invoice-container">
+  <header class="header">
+    <div class="logo-container">
+      <img src="assets/images/Mercedes-Logo.svg.png" alt="Mercedes Logo" class="logo">
+      <div class="service-center-name">Elmohandes Service Center</div>
+    </div>
+    <div class="title">
+      <div class="delete-icon" (click)="deleteBill(bill.billDto.id)" title="حذف الفاتورة">✖</div>
+      <h2>الفاتورة | Invoice</h2>
+      <h3>عملاء نقدي</h3>
+    </div>
+  </header>
+
+  <!-- Side by side for name, phone, date -->
+  <table class="info-table">
+    <tr>
+      <td><strong>الاسم</strong>: {{ bill.customerDto.name }}</td>
+      <td><strong>المحمول</strong>: {{ bill.customerDto.phoneNumber }}</td>
+      <td><strong>التاريخ</strong>: {{ bill.billDto.dateOfNow | date:'dMMMyyyy' }}</td>
+    </tr>
+  </table>
+
+  <table class="details-table">
+    <tr>
+      <td><strong>رقم الشاسية<br>VIN</strong><br>{{ bill.carDto.chassisNumber }}</td>
+      <td><strong>الموديل<br>Model</strong><br>{{ bill.carDto.model }}</td>
+      <td><strong>رقم الموتور<br>Engine No</strong><br>{{ bill.carDto.engineNumber }}</td>
+      <td><strong>رقم اللوحة<br>Reg. No</strong><br>{{ bill.carDto.boardNumber }}</td>
+    </tr>
+    <tr>
+      <td><strong>تاريخ الاستقبال<br>Date Time Received</strong><br>{{ bill.billDto.receptionDate | date:'dMMMyyyy' }}</td>
+      <td><strong>ميعاد التسليم<br>Deadline</strong><br>{{ bill.billDto.deliveryDate | date:'dMMMyyyy' }}</td>
+      <td><strong>الكيلومترات<br>Mileage</strong><br>{{ bill.billDto.kilometers }}</td>
+      <td><strong>تاريخ اخر صيانة<br>Last Service Date</strong><br>{{ bill.billDto.lastServiceDate | date:'dMMMyyyy' }}</td>
+    </tr>
+  </table>
+
+  <table class="items-table">
+    <thead>
+    <tr>
+      <th>البيان<br>Description</th>
+      <th>القيمة<br>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr><td>اجمالي المصنعيات</td><td>{{ bill.billDto.factory }}</td></tr>
+    <tr><td>قطع غيار</td><td>{{ bill.billDto.spareParts }}</td></tr>
+    <tr><td>{{bill.billDto.customerRepresentative}}</td><td>{{ bill.billDto.externalWorks }}</td></tr>
+    <tr><td>خصم قطع غيار</td><td>{{ bill.billDto.sparePartsDiscount }}</td></tr>
+    <tr><td>خصم مصنعية</td><td>{{ bill.billDto.factoryDiscount }}</td></tr>
+    <tr><td>خصم خاص</td><td>{{ bill.billDto.specialDiscount }}</td></tr>
+    <tr><td>صافي الفاتورة</td><td><strong>{{ bill.billDto.netBill }}</strong></td></tr>
+    </tbody>
+  </table>
+
+  <p class="signature-line">
+    تم استلام السيارة بعد عمل كافة الاصلاحات المطلوبة و موافقتي علي قيمة الفاتورة<br>
+    <strong>التوقيع: .........................................</strong>
+  </p>
+
+  <footer class="footer">
+    <p>01145112771 / 01115032121</p>
+    <p>لفاتورة خاضعة للشروط التجارية المتفق عليها مع العميل</p>
+    <p>خدمة الطواري 24 ساعة طوال أيام الاسبوع && نحن في خدمتك طوال أيام الاسبوع من 11ص – 11م عدا الاحد</p>
+  </footer>
+</div>
+<!--  ****************-->
+
+
+
+  <div  class="invoice-document-page">
+    <div class="invoice-wrapper-container">
+
+
+      <table class="customer-car-info-table">
+        <tr>
+          <td style="width: 50%; text-align: right;"><strong>اسم العميل:</strong> {{ bill.customerDto.name }}</td>
+          <td style="width: 50%; text-align: right;"><strong>رقم الشاسية:</strong> {{ bill.carDto.chassisNumber }}</td>
+        </tr>
+      </table>
+
+      <table class="bill-items-details-table">
+        <thead>
+        <tr>
+          <th>الرقم</th>
+          <th>البيان</th>
+          <th>الكمية</th>
+          <th>السعر</th>
+          <th>القيمة</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let field of bill.billFieldsDtos; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ field.field }}</td>
+          <td>{{ field.quantity }}</td>
+          <td>{{ field.price | number }}</td>
+          <td>{{ field.quantity * field.price | number }}</td>
+        </tr>
+        <ng-container *ngIf="bill.billFieldsDtos.length < 17">
+          <tr *ngFor="let _ of [].constructor(17 - bill.billFieldsDtos.length)">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+
+      <div class="financial-totals-section">
+        <div class="total-amount-row">
+          <span>الإجمالي:</span>
+          <span>{{ calculateTotal(bill) | number }} ج.م</span>
+        </div>
+      </div>
+
+
+      <div class="document-footer-text">
+        <strong  >شكراً لتعاملكم معنا</strong>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+    <div class="bill-separator"></div>
+  </div>
+</div>
+

@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Repo Fields</h2>
+  <div class="grid">
+    <div class="card" *ngFor="let bank of banks">
+      <h3>{{ bank.name }}</h3>
+      <p><strong>Quantity:</strong> {{ bank.quantity }}</p>
+      <p><strong>Price:</strong> ${{ bank.price }}</p>
+
+      <div class="actions">
+        <button (click)="goToUpdate(bank.id)" title="Update">
+          ✏️
+        </button>
+        <button (click)="deleteBank(bank.id)" title="Delete">
+          🗑️
+        </button>
+      </div>
+    </div>
+
+    <!-- Add button card -->
+    <div class="card add-card" (click)="goToAdd()" title="Add Field">
+      <div class="add-icon">➕</div>
+    </div>
+  </div>
+</div>

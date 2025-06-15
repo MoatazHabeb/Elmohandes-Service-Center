@@ -1,0 +1,41 @@
+<header id="header">
+  <nav class="navbar navbar-fixed-top menu">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" [routerLink]="['/mainpage']">
+          <div class="brand-content">
+            <div class="brand-icon">
+              <img src="assets/images/Mercedes-Logo.svg.png" alt="Elmohandes Icon" class="brand-icon-img">
+            </div>
+            <div class="brand-text">
+              <span class="brand-name">Elmohandes</span>
+              <span class="brand-sub">Service Center</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div *ngIf="isUserLogin()" id="navbar-collapse">
+        <ul class="main-menu">
+          <li><a [routerLink]="['/mainpage']">Home</a></li>
+
+          <!-- Search Form -->
+<!--          <li class="search-item">-->
+<!--            <form class="navbar-form">-->
+<!--              <div class="form-group">-->
+<!--                <input class="form-control" type="search" placeholder="Search By Date..." #searchInput name="searchInput">-->
+<!--                <i class="icon ion-android-search"></i>-->
+<!--              </div>-->
+<!--            </form>-->
+<!--          </li>-->
+
+          <li class="logout-item">
+            <a (click)="logOut()" class="logout-btn">
+              <i class="icon ion-log-out"></i> Log Out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

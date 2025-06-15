@@ -1,0 +1,122 @@
+<div class="bill-form-wrapper">
+  <div class="bill-form">
+    <h2>Create New Bill</h2>
+
+    <!-- Customer -->
+    <div class="form-group">
+      <label>Select Client</label>
+      <select class="form-control" (change)="onManagerSelected($event)">
+        <option value="" disabled selected>Select a client</option>
+        <option *ngFor="let manager of managers" [value]="manager.id">{{ manager.name }}</option>
+      </select>
+    </div>
+
+    <!-- Car -->
+    <div class="form-group" *ngIf="cars.length > 0">
+      <label>Select Car (رقم الشاسية)</label>
+      <select class="form-control" (change)="onCarSelected($event)">
+        <option value="" disabled selected>Select a car</option>
+        <option *ngFor="let car of cars" [value]="car.id">{{ car.chassisNumber }}</option>
+      </select>
+    </div>
+
+    <!-- Bill Info -->
+    <div class="form-group" *ngFor="let field of [
+      { label: 'التاريخ', model: 'dateOfNow' },
+      { label: 'تاريخ الاستقبال', model: 'receptionDate' },
+      { label: 'ميعاد التسليم', model: 'deliveryDate' },
+      { label: 'تاريخ اخر صيانة', model: 'lastServiceDate' }
+    ]">
+      <label>{{ field.label }}</label>
+      <input type="date" class="form-control" [(ngModel)]="bill[field.model]" />
+    </div>
+
+    <div class="form-group">
+      <label style="color: #9e0707">اعمال خارجيةأم شي اخر</label>
+      <input type="text" class="form-control" [(ngModel)]="bill.customerRepresentative" />
+    </div>
+
+    <div class="form-group">
+      <label>الكيلومترات</label>
+      <input type="text" class="form-control" [(ngModel)]="bill.kilometers" />
+    </div>
+
+    <div class="form-group" *ngFor="let field of [
+  { label: 'مصنعيات', model: 'factory' },
+
+  { label: 'اعمال خارجية', model: 'externalWorks' },
+
+  { label: 'خصم مصنعيات', model: 'factoryDiscount' },
+  { label: 'خصم قطع غيار', model: 'sparePartsDiscount' },
+  { label: 'خصم خاص', model: 'specialDiscount' }
+]">
+<!--      { label: 'قطع غيار', model: 'spareParts' },-->
+<!--      { label: 'ضرائب', model: 'taxes' },-->
+      <label>{{ field.label }}</label>
+      <input
+        type="number"
+        class="form-control"
+        [(ngModel)]="bill[field.model]"
+        [readonly]="field.label === 'قطع غيار'"
+      />
+    </div>
+
+<!--    <div class="form-group">-->
+<!--      <label>صافي الفاتورة</label>-->
+<!--      <input type="number" class="form-control" [value]="bill.netBill" readonly />-->
+<!--    </div>-->
+
+    <hr />
+
+    <!-- Item Type Toggle -->
+    <div class="form-group">
+      <label>Select Item Type</label>
+      <div>
+        <label><input type="radio" name="itemType" [(ngModel)]="useBankItem" [value]="true" /> From Bank</label>
+        <label class="ms-3"><input type="radio" name="itemType" [(ngModel)]="useBankItem" [value]="false" /> Custom Entry</label>
+      </div>
+    </div>
+
+    <!-- Bank Dropdown (if using bank) -->
+    <div class="form-group" *ngIf="useBankItem">
+      <label>Choose Item From Bank</label>
+      <select class="form-control" (change)="onBankSelected($event)">
+        <option value="" disabled selected>Select an item</option>
+        <option *ngFor="let bank of banks" [value]="bank.id">{{ bank.name }}</option>
+      </select>
+    </div>
+
+    <!-- Bill Fields Table -->
+    <h4>Add Bill Fields</h4>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Field</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+      <tr>
+        <td><input [(ngModel)]="newField.field" class="form-control" [readonly]="useBankItem" placeholder="Item name" /></td>
+        <td><input type="number" [(ngModel)]="newField.quantity" class="form-control" placeholder="Quantity" min="1" /></td>
+        <td><input type="number" [(ngModel)]="newField.price" class="form-control" [readonly]="useBankItem" placeholder="Price" /></td>
+        <td><button class="btn btn-success" (click)="addBillField()">Add</button></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let field of billFields; let i = index">
+        <td>{{ field.field }}</td>
+        <td>{{ field.quantity }}</td>
+        <td>{{ field.price }}</td>
+        <td><button class="btn btn-danger" (click)="removeField(i)">Remove</button></td>
+      </tr>
+      </tbody>
+    </table>
+
+    <button class="btn btn-primary mt-3" (click)="submitBill()">Submit Bill</button>
+  </div>
+</div>
+
+
+<p class="notification error notificationAr" *ngIf="messageAr != ''">{{messageAr}}</p>
+<p class="notification error notificationEn" *ngIf="messageEn != ''">{{messageEn}}</p>

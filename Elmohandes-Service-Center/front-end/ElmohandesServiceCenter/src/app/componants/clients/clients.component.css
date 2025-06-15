@@ -1,0 +1,676 @@
+/* Luxury Customer Dashboard CSS */
+.luxury-customer-dashboard {
+  background: linear-gradient(135deg, #1a0f2e 0%, #2d1b3d 50%, #0f172a 100%);
+  min-height: 100vh;
+  padding: 2rem;
+  padding-top: 250px; /* Space for big header - adjust as needed */
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.luxury-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  align-content: center;
+}
+
+.luxury-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #06b6d4, #0891b2, #06b6d4);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.luxury-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3), 0 0 50px rgba(139, 92, 246, 0.15);
+  border-color: rgba(139, 92, 246, 0.4);
+}
+
+.luxury-card:hover::before {
+  opacity: 1;
+}
+
+/* Header Section */
+.luxury-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(139, 92, 246, 0.04));
+  border-radius: 16px;
+  margin-bottom: 2rem;
+}
+
+.brand-logo {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+  flex-shrink: 0;
+}
+
+.brand-logo img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.customer-details {
+  flex: 1;
+}
+
+.customer-name {
+  color: #ffffff;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+
+.phone-number {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.phone-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.phone-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: #06b6d4;
+}
+
+/* Action Buttons */
+.luxury-actions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.luxury-btn {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.luxury-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.luxury-btn:hover::before {
+  left: 100%;
+}
+
+.luxury-btn.edit:hover {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border-color: #8b5cf6;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+}
+
+.luxury-btn.delete:hover {
+  background: linear-gradient(135deg, #f43f5e, #e11d48);
+  border-color: #f43f5e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(244, 63, 94, 0.4);
+}
+
+.luxury-btn.add-car:hover {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  border-color: #06b6d4;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(6, 182, 212, 0.4);
+}
+
+.luxury-btn.bills:hover {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border-color: #f59e0b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+}
+
+/* Vehicle Portfolio */
+.vehicle-portfolio {
+  position: relative;
+}
+
+.portfolio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(139, 92, 246, 0.08));
+  border-radius: 16px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.title-container i {
+  color: #8b5cf6;
+  font-size: 1.2rem;
+}
+
+.portfolio-header h3 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.vehicle-count {
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Vehicle Showcase Container */
+.vehicle-showcase {
+  position: relative;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 8px;
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+.vehicle-showcase::-webkit-scrollbar {
+  width: 6px;
+}
+
+.vehicle-showcase::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+.vehicle-showcase::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border-radius: 3px;
+}
+
+.vehicle-showcase::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+}
+
+/* Scroll Controls */
+.scroll-controls {
+  position: absolute;
+  right: -15px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 10;
+}
+
+.scroll-btn {
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.9), rgba(124, 58, 237, 0.9));
+  border: none;
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.scroll-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.6);
+}
+
+.scroll-btn:active {
+  transform: scale(0.95);
+}
+
+/* Vehicle Items */
+.vehicle-item {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.vehicle-item:hover {
+  transform: translateX(5px);
+  border-color: rgba(139, 92, 246, 0.4);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.12), rgba(139, 92, 246, 0.06));
+}
+
+.vehicle-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.vehicle-item:hover::before {
+  opacity: 1;
+}
+
+.vehicle-info {
+  margin-bottom: 1rem;
+}
+
+.model {
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.01em;
+}
+
+.specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.spec {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.spec .label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.spec .value {
+  color: #06b6d4;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+/* Vehicle Controls */
+.vehicle-controls {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.control-btn {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.control-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.control-btn.edit:hover {
+  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  border-color: #8b5cf6;
+  color: #ffffff;
+}
+
+.control-btn.delete:hover {
+  background: linear-gradient(135deg, #f43f5e, #e11d48);
+  border-color: #f43f5e;
+  color: #ffffff;
+}
+
+/* Empty Garage */
+.empty-garage {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.empty-content i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.3;
+}
+
+.empty-content p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .luxury-customer-dashboard {
+    padding: 1rem;
+    padding-top: 180px; /* Adjusted for mobile header */
+  }
+
+  .luxury-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .luxury-card {
+    padding: 1.5rem;
+  }
+
+  .luxury-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .scroll-controls {
+    right: -10px;
+  }
+
+  .scroll-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.7rem;
+  }
+
+  .customer-name {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .luxury-customer-dashboard {
+    padding-top: 150px; /* Smaller top padding for very small screens */
+  }
+
+  .luxury-card-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+
+  .brand-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .brand-logo img {
+    width: 35px;
+    height: 35px;
+  }
+
+  .customer-name {
+    font-size: 1.5rem;
+  }
+
+  .vehicle-showcase {
+    max-height: 300px;
+  }
+}
+
+/* Animation Effects */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.luxury-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.vehicle-item {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+/* Focus States for Accessibility */
+.luxury-btn:focus,
+.control-btn:focus,
+.scroll-btn:focus {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+  .luxury-customer-dashboard {
+    background: white;
+    color: black;
+  }
+
+  .luxury-card {
+    background: white;
+    border: 1px solid #ccc;
+    break-inside: avoid;
+  }
+
+  .scroll-controls {
+    display: none;
+  }
+}
+
+
+
+
+
+/* Dark Luxury Search Bar - No White */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 800px;
+  margin: 0 100px 100px 100px;
+  padding: 16px 24px;
+  background: #0f0f13; /* Matte black base */
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(92, 71, 149, 0.15); /* Deep purple shadow */
+  border: 1px solid #2a2a35; /* Dark metallic border */
+
+}
+
+/* Custom Select - Gunmetal & Gold */
+.custom-select {
+  position: relative;
+  min-width: 180px;
+}
+
+.search-type-select {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  padding: 12px 36px 12px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6a53af; /* Gold text */
+  background-color: #1e1e28; /* Gunmetal */
+  border: 1px solid #3d3d4d;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.search-type-select:hover {
+  border-color: #6a53af; /* Gold accent */
+  background-color: #252532;
+}
+
+.select-arrow svg path {
+  stroke: #6a53af; /* Gold arrow */
+}
+
+/* Search Input - Emerald Glow */
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.search-icon svg path {
+  stroke: #5c8d7e; /* Muted teal */
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 20px 12px 48px;
+  font-size: 14px;
+  color: #e0e0e8; /* Off-white text */
+  background-color: #1e1e28; /* Gunmetal */
+  border: 1px solid #3d3d4d;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: #5c8d7e; /* Emerald */
+  background-color: #252532;
+  box-shadow: 0 0 0 2px rgba(92, 141, 126, 0.3);
+}
+
+/* Luxury Buttons */
+.luxury-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Primary - Gold Metallic */
+.search-btn {
+  background: linear-gradient(135deg, #6a53af, #6a53af);
+  color: #0f0f13; /* Dark text */
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.search-btn:hover {
+  background: linear-gradient(135deg, #6a53af, #6a53af);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+}
+
+/* Secondary - Deep Burgundy */
+.clear-btn {
+  background: #2a1a2c; /* Dark plum */
+  color: #d4a5b5; /* Dusty rose */
+  border: 1px solid #4a2a4d;
+}
+
+.clear-btn:hover {
+  background: #3a2a3c;
+  color: #e8c5d5;
+  transform: translateY(-2px);
+}
+
+/* Active State Glow */
+.search-btn:active,
+.clear-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(92, 71, 149, 0.5);
+}
+
+
+
+
+.no-results-message {
+  text-align: center;
+  font-size: 18px;
+  color: #4e1783;
+  margin: 20px 0;
+  font-weight: bold;
+}

@@ -1,0 +1,48 @@
+<div style="margin-top: 100px; text-align: center;">
+  <button (click)="toggleForm()" class="toggle-button">
+    {{ showForm ? 'Cancel' : 'Add Member' }}
+  </button>
+</div>
+
+<div class="create-form" *ngIf="showForm">
+  <h3>Add New Team Member</h3>
+  <form (ngSubmit)="createTeamMember()">
+    <input type="text" placeholder="Name" [(ngModel)]="newMember.name" name="name" required />
+    <input type="text" placeholder="Phone Number" [(ngModel)]="newMember.phoneNumber" name="phoneNumber" required />
+    <input type="text" placeholder="Age" [(ngModel)]="newMember.age" name="age" required />
+    <input type="text" placeholder="Image URL" [(ngModel)]="newMember.image" name="image" />
+    <input type="number" placeholder="Balance" [(ngModel)]="newMember.balance" name="balance" />
+    <label>
+      <input type="checkbox" [(ngModel)]="newMember.active" name="active" />
+      Active
+    </label>
+    <button type="submit">Create Member</button>
+  </form>
+</div>
+
+<hr />
+
+<div class="team-container">
+  <h2>My Team</h2>
+  <div *ngIf="teamList.length === 0">No team members found.</div>
+  <div class="team-cards-wrapper">
+    <div class="team-card" *ngFor="let member of teamList">
+      <img [src]="'assets/images/' + member.image"
+           (error)="onImageError($event)"
+           alt="{{ member.name }}"
+           width="100"
+           height="100">
+      <div class="info">
+        <h3>{{ member.name }}</h3>
+        <p>Phone: {{ member.phoneNumber }}</p>
+        <p>Age: {{ member.age }}</p>
+        <p>Balance: {{ member.balance }} EGP</p>
+        <p>Status: {{ member.active ? 'Active' : 'Inactive' }}</p>
+
+        <button [routerLink]="['/team-action', 'update', member.id]">Update Member</button>
+        <button [routerLink]="['/team-action', 'create-balance', member.id]">Create New Balance</button>
+        <button [routerLink]="['/team-action', 'show-balance', member.id]">Show All Balances</button>
+      </div>
+    </div>
+  </div>
+</div>
